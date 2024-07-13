@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Redirige HTTP a HTTPS (opcional)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Asegura que el www. sea añadido o removido (opcional)
+    # RewriteCond %{HTTP_HOST} ^www\.(.+)$ [OR]
+    # RewriteCond %{HTTP_HOST} !^www\.
+    # RewriteRule ^ https://example.com%{REQUEST_URI} [L,R=301]
+
+    # Reescribe todas las solicitudes al archivo index.php excepto los archivos o directorios existentes
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+</IfModule>
